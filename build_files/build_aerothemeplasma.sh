@@ -53,9 +53,11 @@ cd "$CUR_DIR/repos"
 git clone https://gitgud.io/aeroshell/smod.git smod
 cd smod
 git pull
-bash install.sh $@
+cmake -DCMAKE_INSTALL_PREFIX=/usr -B build . || exit 1
+cmake --build build || exit 1
+cmake --install build || exit 1
 cp build/install_manifest.txt "$CUR_DIR/manifest/smod_install_manifest.txt"
-cp smodglow/build-wl/install_manifest.txt "$CUR_DIR/manifest/smodglow_install_manifest.txt"
+# cp smodglow/build-wl/install_manifest.txt "$CUR_DIR/manifest/smodglow_install_manifest.txt"
 # cp smodglow/build/install_manifest.txt "$CUR_DIR/manifest/smodglow-x11_install_manifest.txt"
 
 cd "$CUR_DIR/repos"
